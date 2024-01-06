@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 import Link from "next/link";
 import Button from "~/components/common/Button";
 import { useEffect, useState } from "react";
@@ -17,10 +20,16 @@ import {
   DrawerTrigger,
 } from "~/components/common/shadcn/Drawer";
 
+interface messageType {
+  id: string;
+  sender: string;
+  text: string;
+}
+
 export default function Check() {
   const [currentMessage, setCurrentMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [messages, setChatMessages] = useState<any>([]);
+  const [messages, setChatMessages] = useState<messageType[]>([]);
 
   const rationale = {
     "This text is fine": (
