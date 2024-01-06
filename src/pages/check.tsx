@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/consistent-indexed-object-style */
 
 import Link from "next/link";
 import Button from "~/components/common/Button";
@@ -26,27 +27,31 @@ interface messageType {
   text: string;
 }
 
+interface rationaleValueStore {
+  [key: string]: React.ReactNode;
+}
+
+const rationale: rationaleValueStore = {
+  "This text is fine": (
+    <p>You will probably be fine with posting this message</p>
+  ),
+  "Hate Speech": (
+    <p>
+      This is hate speech, learn more at{" "}
+      <a
+        className="text-secondaryBase"
+        href="https://www.un.org/en/hate-speech/understanding-hate-speech/what-is-hate-speech#:~:text=In%20common%20language%2C%20%E2%80%9Chate%20speech,that%20may%20threaten%20social%20peace."
+      >
+        UN website
+      </a>
+    </p>
+  ),
+};
+
 export default function Check() {
   const [currentMessage, setCurrentMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [messages, setChatMessages] = useState<messageType[]>([]);
-
-  const rationale = {
-    "This text is fine": (
-      <p>You will probably be fine with posting this message</p>
-    ),
-    "Hate Speech": (
-      <p>
-        This is hate speech, learn more at{" "}
-        <a
-          className="text-secondaryBase"
-          href="https://www.un.org/en/hate-speech/understanding-hate-speech/what-is-hate-speech#:~:text=In%20common%20language%2C%20%E2%80%9Chate%20speech,that%20may%20threaten%20social%20peace."
-        >
-          UN website
-        </a>
-      </p>
-    ),
-  };
 
   const sendChatMessage = async () => {
     if (currentMessage.trim() === "") {
