@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/consistent-indexed-object-style */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 
 import Link from "next/link";
 import Button from "~/components/common/Button";
@@ -58,7 +61,7 @@ async function moderateContent(prompt: string) {
 const rationale: rationaleValueStore = {
   sexual: false,
   hate: (
-    <p>
+    <span>
       This is hate speech, learn more at{" "}
       <a
         className="text-secondaryBase"
@@ -66,7 +69,7 @@ const rationale: rationaleValueStore = {
       >
         UN website
       </a>
-    </p>
+    </span>
   ),
   harassment: false,
   "self-harm": true,
@@ -77,7 +80,22 @@ const rationale: rationaleValueStore = {
   "self-harm/instructions": false,
   "harassment/threatening": false,
   violence: false,
-  fine: <p>You will probably be fine with posting this message</p>,
+  fine: <span>You will probably be fine with posting this message</span>,
+};
+
+const shorthand: rationaleValueStore = {
+  sexual: "You think you are a funny guy?",
+  hate: "This is hate speech",
+  harassment: "We detecting harassment",
+  "self-harm": true,
+  "sexual/minors": false,
+  "hate/threatening": false,
+  "violence/graphic": false,
+  "self-harm/intent": true,
+  "self-harm/instructions": false,
+  "harassment/threatening": false,
+  violence: "This contains violence or suggestions of violence",
+  fine: "This is fine",
 };
 
 export default function Check() {
@@ -104,29 +122,42 @@ export default function Check() {
         sender: "/user",
         text: currentMessage,
       },
-      {
-        id: "s",
-        sender: "bot",
-        text: "This text is fine",
-      },
-      {
-        id: "ss",
-        sender: "bot",
-        text: "Hate Speech",
-      },
     ]);
     setCurrentMessage("");
+    setIsTyping(true);
 
-    // TODO: sent request here
+    // sent request here
+    try {
+      const res = await moderateContent(currentMessage);
 
-    // setChatMessages([
-    //   ...messages,
-    //   {
-    //     id: "s",
-    //     sender: "bot",
-    //     text: "This text is fine",
-    //   },
-    // ]);
+      console.log(res);
+      // what is the text result:
+      let text = "fine";
+      if (res.results[0].flagged) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        Object.entries(res.results[0].categories).forEach(([key, value]) => {
+          if (value) {
+            text = key;
+          }
+        });
+      }
+      setChatMessages([
+        ...messages,
+        {
+          id: currentMessage,
+          sender: "/user",
+          text: currentMessage,
+        },
+        {
+          id: res.id,
+          sender: "bot",
+          text: text,
+        },
+      ]);
+      setIsTyping(false);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -137,16 +168,16 @@ export default function Check() {
         <div className="text-textPrimary m-auto w-full max-w-6xl">
           <div className="-lg:pt-8 flex h-full w-full items-end justify-between px-2 pt-16 font-semibold">
             {/* profile image */}
-            {/* <div className="flex items-end">
-              <div className="mr-4">
+            <div className="flex items-end">
+              {/* <div className="mr-4">
                 <img
                   src="/_protected/profile.png"
                   alt="profile"
                   className="border-textPrimary h-20 w-20 rounded-full border-2"
                 />
-              </div>
-              <h2 className="text-5xl">Kali</h2>
-            </div> */}
+              </div> */}
+              <h2 className="text-5xl">Validate your messages</h2>
+            </div>
             <Link href="/">
               <button
                 title="Back"
@@ -161,7 +192,7 @@ export default function Check() {
         <div className="bg-girl-default border-textPrimary text-textPrimary relative m-auto my-0 h-[60vh] w-full max-w-6xl snap-y snap-end overflow-auto rounded-xl border-2 text-2xl">
           <div className="pb-12">
             {/* text messages */}
-            {messages?.map((message: any) => {
+            {messages?.map((message: messageType) => {
               console.log(message);
               if (message.sender === "/user") {
                 return (
@@ -177,7 +208,9 @@ export default function Check() {
                 return (
                   <span key={`other-${message.id}`}>
                     <span className="border-textPrimary -lg:max-w-full float-left m-4 block max-w-[30%] break-words rounded-lg rounded-bl-none border-2 px-4 py-2 text-justify">
-                      <span className="inline-block">{message.text} </span>
+                      <span className="inline-block">
+                        {shorthand[message.text]}{" "}
+                      </span>
                       <Drawer>
                         <DrawerTrigger>
                           <span
@@ -190,7 +223,9 @@ export default function Check() {
                         <DrawerContent>
                           <div className="mb-20 flex w-full items-center justify-center">
                             <DrawerHeader>
-                              <DrawerTitle>{message.text}</DrawerTitle>
+                              <DrawerTitle className="capitalize">
+                                {message.text}
+                              </DrawerTitle>
                               <DrawerDescription>
                                 {rationale[message.text]}
                               </DrawerDescription>
@@ -224,7 +259,7 @@ export default function Check() {
                   className="h-16 w-16"
                   autoPlay
                   loop
-                  src="/common/animation/typing.webm"
+                  src="typing.webm"
                   muted
                 />
               </span>
