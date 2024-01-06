@@ -26,13 +26,15 @@ const Footer: React.FC = () => {
       <div className="m-auto flex h-full w-full max-w-6xl flex-row justify-between py-8">
         <p>
           {/* copyright */}
-          <span className="text-2xl">© Positron</span>
+          <span className="text-2xl">©Positron</span>
         </p>
         <Link
-          href="/login"
+          target="_blank"
+          title="Download the extension"
+          href="https://github.com/Julia-Dantas/Positron-Google-Chrome-Extension"
           className="text-textSecondary hover:text-textSecondaryHover text-2xl font-bold transition-all"
         >
-          Try It
+          Download It
         </Link>
       </div>
     </footer>

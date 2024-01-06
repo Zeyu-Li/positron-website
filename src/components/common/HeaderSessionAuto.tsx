@@ -18,6 +18,7 @@ const Header: React.FC = () => {
         {/* login */}
         <Link
           href="https://github.com/Julia-Dantas/Positron-Google-Chrome-Extension"
+          title="Download the extension"
           target="_blank"
           className="text-textPrimary hover:text-textPrimaryHover text-2xl font-bold transition-all"
         >
