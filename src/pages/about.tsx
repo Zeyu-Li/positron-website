@@ -36,9 +36,9 @@ export default function About() {
           </div>
         </div> */}
 
-        <div className="border-textPrimary text-textPrimary relative m-auto my-0 w-full max-w-6xl snap-y snap-end overflow-auto rounded-xl pb-12 pr-[15vw] pt-24 text-justify text-2xl">
+        <div className="border-textPrimary text-textPrimary -lg:text-left relative m-auto my-0  w-full max-w-6xl snap-y snap-end overflow-auto rounded-xl pb-12 pr-[15vw] pt-24 text-justify text-2xl">
           <h1 className="-lg:text-6xl pb-12 text-7xl font-bold">About</h1>
-          <p className="pb-12 text-2xl">
+          <p className="-lg:text-lg pb-12 text-2xl">
             In a world full of misinformation, hate speech, and harmful content,
             it overwhelms and negatively effects people. With our extension, we
             can hide hateful content <b>automagically</b>! You can also check if

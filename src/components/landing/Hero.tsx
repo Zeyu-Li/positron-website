@@ -11,12 +11,12 @@ import ActionButtons from "../common/ActionButtons";
 const Hero: React.FC = () => {
   return (
     <div className="-lg:px-8 w-full max-w-6xl flex-row">
-      <div className="-lg:flex-col flex h-screen w-full flex-row items-center">
+      <div className="-lg:flex-col flex min-h-screen w-full flex-row items-center">
         <div className="fadeIn -lg:pt-32 ml-12 flex flex-1 flex-col" id="top">
-          <h1 className="-lg:text-6xl text-7xl font-bold">
+          <h1 className="-lg:text-4xl text-7xl font-bold">
             Positify the Internet ✨
           </h1>
-          <h2 className="text-textPrimary/90 py-8 text-4xl font-semibold">
+          <h2 className="text-textPrimary/90 -lg:text-2xl py-8 text-4xl font-semibold">
             Remove all hate speech, misinformation, and
             <br /> harmful content using a{" "}
             <Link
@@ -32,7 +32,7 @@ const Hero: React.FC = () => {
           <div>
             {/* call to action button of try now styled like mailchimp */}
             <ActionButtons />
-            <Link href="/about" className="ml-10">
+            <Link href="/about" className="-lg:ml-0 ml-10">
               <Button text={"About >"} />
             </Link>
           </div>

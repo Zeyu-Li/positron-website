@@ -101,7 +101,18 @@ const shorthand: rationaleValueStore = {
 export default function Check() {
   const [currentMessage, setCurrentMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [messages, setChatMessages] = useState<messageType[]>([]);
+  const [messages, setChatMessages] = useState<messageType[]>([
+    {
+      id: "test1",
+      sender: "/user",
+      text: "Just type a message below and the AI bot will check for you. As you can see, this message is fine to post!",
+    },
+    {
+      id: "test2",
+      sender: "bot",
+      text: "fine",
+    },
+  ]);
 
   const sendChatMessage = async () => {
     if (currentMessage.trim() === "") {
@@ -166,7 +177,7 @@ export default function Check() {
       <Title title="Positron | Check" />
       <main className="bg-primaryBase flex min-h-screen flex-col p-4 pt-12">
         <div className="text-textPrimary m-auto w-full max-w-6xl">
-          <div className="-lg:pt-8 flex h-full w-full items-end justify-between px-2 pt-16 font-semibold">
+          <div className="-lg:pt-8 -lg:flex-col flex h-full w-full items-end justify-between px-2 pt-16 font-semibold">
             {/* profile image */}
             <div className="flex items-end">
               {/* <div className="mr-4">
@@ -178,7 +189,7 @@ export default function Check() {
               </div> */}
               <h2 className="text-5xl">Validate your messages</h2>
             </div>
-            <Link href="/">
+            <Link href="/" className="-lg:hidden">
               <button
                 title="Back"
                 className="button-animation border-textPrimary text-textPrimary rounded-full border-2 bg-red-500 px-10 py-3 text-2xl no-underline transition-all"
@@ -197,7 +208,7 @@ export default function Check() {
               if (message.sender === "/user") {
                 return (
                   <span key={`user-${message.id}`}>
-                    <span className="border-textPrimary -lg:max-w-full float-right m-4 block max-w-[30%] break-words rounded-[8px] rounded-br-none border-2 bg-green-400 px-4 py-2">
+                    <span className="border-textPrimary -lg:max-w-full float-right m-4 ml-[40%] block break-words rounded-[8px] rounded-br-none border-2 bg-green-400 px-4 py-2">
                       {message.text}
                     </span>
                     <br />

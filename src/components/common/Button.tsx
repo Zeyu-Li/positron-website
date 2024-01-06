@@ -10,7 +10,7 @@ const Button: React.FC<Props> = ({ text, bg }) => {
   return (
     <button
       title={text}
-      className={`button-animation border-textPrimary text-textPrimary rounded-full border-2 px-10 py-3 text-2xl no-underline transition-all ${bg}`}
+      className={`button-animation border-textPrimary text-textPrimary -lg:my-2 -lg:text-xl rounded-full border-2 px-10 py-3 text-2xl no-underline transition-all ${bg}`}
     >
       {text}
     </button>

@@ -40,7 +40,7 @@ export default function ActionButtons() {
 
       <HoverCard>
         <HoverCardTrigger asChild>
-          <Link href="/check" className="ml-10">
+          <Link href="/check" className="-lg:ml-0 ml-10">
             <Button bg="bg-green-400" text={"Check your Posts >"} />
           </Link>
         </HoverCardTrigger>
