@@ -30,6 +30,30 @@ interface messageType {
 interface rationaleValueStore {
   [key: string]: React.ReactNode;
 }
+async function moderateContent(prompt: string) {
+  const apiKey = "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";
+  const url = "https://api.openai.com/v1/moderations";
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({ input: prompt }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error while calling OpenAI Moderation API:", error);
+  }
+}
 
 const rationale: rationaleValueStore = {
   "This text is fine": (
