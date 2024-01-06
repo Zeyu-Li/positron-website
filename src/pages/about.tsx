@@ -11,7 +11,7 @@ export default function About() {
   return (
     <>
       <Header />
-      <Title title="PlayDate | Chatting with Kali" />
+      <Title title="Positron | About" />
       <main className="bg-primaryBase flex min-h-screen flex-col p-4 pt-12">
         {/* <div className="text-textPrimary m-auto w-full max-w-6xl">
           <div className="-lg:pt-8 flex h-full w-full items-end justify-between px-2 pt-16 font-semibold">

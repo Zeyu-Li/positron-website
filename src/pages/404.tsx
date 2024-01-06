@@ -7,7 +7,7 @@ import Title from "../components/SEO/Title";
 const Custom404: NextPage = () => {
   return (
     <>
-      <Title title="PlayDate | Lost in Action" />
+      <Title title="Positron | 404" />
       <Header />
       <main className="bg-primaryBase flex min-h-screen flex-col items-center justify-center">
         <div className="-lg:px-8 w-full  max-w-6xl">

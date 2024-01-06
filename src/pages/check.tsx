@@ -28,7 +28,7 @@ interface messageType {
 }
 
 interface rationaleValueStore {
-  [key: string]: React.ReactNode;
+  [key: string]: React.ReactNode | boolean;
 }
 async function moderateContent(prompt: string) {
   const apiKey = "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";
@@ -56,10 +56,8 @@ async function moderateContent(prompt: string) {
 }
 
 const rationale: rationaleValueStore = {
-  "This text is fine": (
-    <p>You will probably be fine with posting this message</p>
-  ),
-  "Hate Speech": (
+  sexual: false,
+  hate: (
     <p>
       This is hate speech, learn more at{" "}
       <a
@@ -70,6 +68,16 @@ const rationale: rationaleValueStore = {
       </a>
     </p>
   ),
+  harassment: false,
+  "self-harm": true,
+  "sexual/minors": false,
+  "hate/threatening": false,
+  "violence/graphic": false,
+  "self-harm/intent": true,
+  "self-harm/instructions": false,
+  "harassment/threatening": false,
+  violence: false,
+  fine: <p>You will probably be fine with posting this message</p>,
 };
 
 export default function Check() {
@@ -124,7 +132,7 @@ export default function Check() {
   return (
     <>
       <Header />
-      <Title title="PlayDate | Chatting with Kali" />
+      <Title title="Positron | Check" />
       <main className="bg-primaryBase flex min-h-screen flex-col p-4 pt-12">
         <div className="text-textPrimary m-auto w-full max-w-6xl">
           <div className="-lg:pt-8 flex h-full w-full items-end justify-between px-2 pt-16 font-semibold">
