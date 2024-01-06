@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Button from "../common/Button";
 
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+// import {
+//   HoverCard,
+//   HoverCardContent,
+//   HoverCardTrigger,
+// } from "@/components/ui/hover-card";
 
 const Hero: React.FC = () => {
   return (
@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
           <div>
             {/* call to action button of try now styled like mailchimp */}
             {/* TODO: Download the extension link */}
-            <HoverCard>
+            {/* <HoverCard>
               <HoverCardTrigger asChild>
                 <Link href="/#">
                   <Button bg="bg-sky-400" text={"Install Now >"} />
@@ -43,7 +43,7 @@ const Hero: React.FC = () => {
                   </div>
                 </div>
               </HoverCardContent>
-            </HoverCard>
+            </HoverCard> */}
             <Link href="/check" className="ml-10">
               <Button text={"Check your Posts >"} />
             </Link>
