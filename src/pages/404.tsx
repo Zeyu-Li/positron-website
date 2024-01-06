@@ -9,17 +9,17 @@ const Custom404: NextPage = () => {
     <>
       <Title title="PlayDate | Lost in Action" />
       <Header />
-      <main className="flex min-h-screen flex-col items-center justify-center bg-primary">
-        <div className="w-full max-w-6xl  -lg:px-8">
-          <div className="flex h-screen w-full flex-row items-center -lg:flex-col">
-            <div className="flex flex-1 flex-col -lg:pt-32" id="top">
+      <main className="bg-primaryBase flex min-h-screen flex-col items-center justify-center">
+        <div className="-lg:px-8 w-full  max-w-6xl">
+          <div className="-lg:flex-col flex h-screen w-full flex-row items-center">
+            <div className="-lg:pt-32 flex flex-1 flex-col" id="top">
               <div>
-                <h1 className="text-6xl font-bold -lg:text-6xl">
+                <h1 className="-lg:text-6xl text-6xl font-bold">
                   Looks like you{"'"}re lost
                 </h1>
               </div>
               <div>
-                <h2 className="py-8 text-4xl font-bold text-textPrimary/90">
+                <h2 className="text-textPrimary/90 py-8 text-4xl font-bold">
                   Come back 🥺
                 </h2>
               </div>

@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="bg-primary flex min-h-screen flex-col items-center justify-center">
+      <main className="bg-primaryBase flex min-h-screen flex-col items-center justify-center">
         <Hero />
         <Showcase />
         <Footer />

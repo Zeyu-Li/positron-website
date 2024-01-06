@@ -4,7 +4,7 @@ const Header: React.FC = () => {
   const sessionData = false;
 
   return (
-    <header className="bg-primary fixed top-0 z-20 flex w-full items-center justify-between">
+    <header className="bg-primaryBase fixed top-0 z-20 flex w-full items-center justify-between">
       <div className="border-textPrimary text-textPrimary mx-auto flex w-full max-w-6xl items-center justify-between border-b-[1px] p-4">
         {/* logo image */}
         <Link href={sessionData ? "/home" : "/"}>
@@ -17,10 +17,11 @@ const Header: React.FC = () => {
 
         {/* login */}
         <Link
-          href="/try"
+          href="https://github.com/Julia-Dantas/Positron-Google-Chrome-Extension"
+          target="_blank"
           className="text-textPrimary hover:text-textPrimaryHover text-2xl font-bold transition-all"
         >
-          Try It
+          Download It
         </Link>
       </div>
     </header>
