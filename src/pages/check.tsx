@@ -17,7 +17,7 @@ import {
   DrawerTrigger,
 } from "~/components/common/shadcn/Drawer";
 
-export default function ChatSession() {
+export default function Check() {
   const [currentMessage, setCurrentMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [messages, setChatMessages] = useState<any>([]);

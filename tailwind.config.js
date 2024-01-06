@@ -76,7 +76,15 @@ module.exports = {
         "-sm": { max: "640px" },
         "3xl": { min: "1820px" },
       },
+      backgroundSize: {
+        "300%": "300%",
+      },
       keyframes: {
+        animatedgradient: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -89,6 +97,7 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        gradient: "animatedgradient 6s ease infinite alternate",
       },
     },
   },
