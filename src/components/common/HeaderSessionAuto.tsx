@@ -4,7 +4,7 @@ const Header: React.FC = () => {
   const sessionData = false;
 
   return (
-    <header className="bg-primaryBase fixed top-0 z-20 flex w-full items-center justify-between">
+    <header className="bg-primaryBase fixed top-0 z-30 flex w-full items-center justify-between">
       <div className="border-textPrimary text-textPrimary mx-auto flex w-full max-w-6xl items-center justify-between border-b-[1px] p-4">
         {/* logo image */}
         <Link href={sessionData ? "/home" : "/"}>

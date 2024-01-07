@@ -11,8 +11,18 @@ import ActionButtons from "../common/ActionButtons";
 const Hero: React.FC = () => {
   return (
     <div className="-lg:px-8 w-full max-w-6xl flex-row">
-      <div className="-lg:flex-col flex min-h-screen w-full flex-row items-center">
-        <div className="fadeIn -lg:pt-32 ml-12 flex flex-1 flex-col" id="top">
+      <div className="relative flex min-h-screen w-full items-center">
+        <div className="from-primaryBase to-primaryBase/30 via-primaryBase/50 absolute left-0 top-8 z-10 h-screen max-h-[90vh] w-full bg-gradient-to-t from-10% via-50% to-80%"></div>
+        <video
+          autoPlay
+          muted
+          className="z-1 absolute left-0 top-8 max-h-[90vh]"
+          src={"cool.webm"}
+        />
+        <div
+          className="fadeIn -lg:pt-32 z-20 ml-12 flex flex-1 flex-col"
+          id="top"
+        >
           <h1 className="-lg:text-4xl text-7xl font-bold">
             Positify the Internet ✨
           </h1>
@@ -33,7 +43,7 @@ const Hero: React.FC = () => {
             {/* call to action button of try now styled like mailchimp */}
             <ActionButtons />
             <Link href="/about" className="-lg:ml-0 ml-10">
-              <Button text={"About >"} />
+              <Button bg="bg-primaryBase" text={"About >"} />
             </Link>
           </div>
         </div>
