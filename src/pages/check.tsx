@@ -33,7 +33,7 @@ interface rationaleValueStore {
 }
 async function moderateContent(prompt: string) {
   const apiKey =
-    "c2stWjdidUY1ZGxTcHdJdmxsRjZXM1JUM0JsYmtGSjF5NlpNenRncTlObnAzZ0gxNWZ3";
+    "c2stN0Y4b3FrZ2s3ckR0RzFvZkZsd1NUM0JsYmtGSjJ3SnBSU1BZeTV6NjRta0VmTUps";
   const url = "https://api.openai.com/v1/moderations";
 
   try {
@@ -311,9 +311,9 @@ export default function Check() {
     <>
       <Header />
       <Title title="Positron | Check" />
-      <main className="bg-primaryBase flex min-h-screen flex-col p-4 pt-12">
-        <div className="text-textPrimary m-auto w-full max-w-6xl">
-          <div className="-lg:pt-8 -lg:flex-col flex h-full w-full items-end justify-between px-2 pt-16 font-semibold">
+      <main className="flex min-h-screen flex-col bg-primaryBase p-4 pt-12">
+        <div className="m-auto w-full max-w-6xl text-textPrimary">
+          <div className="flex h-full w-full items-end justify-between px-2 pt-16 font-semibold -lg:flex-col -lg:pt-8">
             {/* profile image */}
             <div className="flex items-end">
               {/* <div className="mr-4">
@@ -328,7 +328,7 @@ export default function Check() {
             <Link href="/" className="-lg:hidden">
               <button
                 title="Back"
-                className="button-animation border-textPrimary text-textPrimary rounded-full border-2 bg-red-500 px-10 py-3 text-2xl no-underline transition-all"
+                className="button-animation rounded-full border-2 border-textPrimary bg-red-500 px-10 py-3 text-2xl text-textPrimary no-underline transition-all"
               >
                 Back
               </button>
@@ -336,7 +336,7 @@ export default function Check() {
           </div>
         </div>
 
-        <div className="bg-girl-default border-textPrimary text-textPrimary relative m-auto my-0 h-[60vh] w-full max-w-6xl snap-y snap-end overflow-auto rounded-xl border-2 text-2xl">
+        <div className="bg-girl-default relative m-auto my-0 h-[60vh] w-full max-w-6xl snap-y snap-end overflow-auto rounded-xl border-2 border-textPrimary text-2xl text-textPrimary">
           <div className="pb-12">
             {/* text messages */}
             {messages?.map((message: messageType) => {
@@ -344,7 +344,7 @@ export default function Check() {
               if (message.sender === "/user") {
                 return (
                   <span key={`user-${message.id}`}>
-                    <span className="border-textPrimary -lg:max-w-full float-right m-4 ml-[40%] block break-words rounded-[8px] rounded-br-none border-2 bg-green-400 px-4 py-2">
+                    <span className="float-right m-4 ml-[40%] block break-words rounded-[8px] rounded-br-none border-2 border-textPrimary bg-green-400 px-4 py-2 -lg:max-w-full">
                       {message.text}
                     </span>
                     <br />
@@ -355,7 +355,7 @@ export default function Check() {
                 console.warn(shorthand, message.text, shorthand[message.text]);
                 return (
                   <span key={`other-${message.id}`}>
-                    <span className="border-textPrimary -lg:max-w-full float-left m-4 mr-[40%] block break-words rounded-lg rounded-bl-none border-2 px-4 py-2 text-justify">
+                    <span className="float-left m-4 mr-[40%] block break-words rounded-lg rounded-bl-none border-2 border-textPrimary px-4 py-2 text-justify -lg:max-w-full">
                       <span className="inline-block">
                         {shorthand[message.text]}{" "}
                       </span>
@@ -402,7 +402,7 @@ export default function Check() {
             )} */}
             {/* typing indicator */}
             {isTyping && (
-              <span className="text-textPrimary absolute left-0 m-4 animate-pulse px-4 py-2">
+              <span className="absolute left-0 m-4 animate-pulse px-4 py-2 text-textPrimary">
                 <video
                   className="h-16 w-16"
                   autoPlay
@@ -415,11 +415,11 @@ export default function Check() {
           </div>
         </div>
         {/* <form> */}
-        <div className="border-textPrimary text-textPrimary m-auto flex w-full max-w-6xl justify-between rounded-xl border-2">
+        <div className="m-auto flex w-full max-w-6xl justify-between rounded-xl border-2 border-textPrimary text-textPrimary">
           {/* input message box */}
           <input
             type="text"
-            className="bg-primary text-textPrimary placeholder:text-textPrimary/70 h-16 w-full rounded-xl border-0 px-4 text-2xl outline-none focus:outline-none"
+            className="h-16 w-full rounded-xl border-0 bg-primary px-4 text-2xl text-textPrimary outline-none placeholder:text-textPrimary/70 focus:outline-none"
             placeholder="Check your messages!"
             onSubmit={() => void sendChatMessage()}
             onChange={(e) => setCurrentMessage(e.target.value)}
@@ -432,7 +432,7 @@ export default function Check() {
           />
           {/* send button */}
           <button
-            className={`border-textPrimary text-textPrimary h-[68px] w-[72px] rounded-[9px] border-0 border-l-2 text-2xl outline-none transition-all focus:outline-none ${
+            className={`h-[68px] w-[72px] rounded-[9px] border-0 border-l-2 border-textPrimary text-2xl text-textPrimary outline-none transition-all focus:outline-none ${
               isTyping ? "bg-red-500" : "bg-green-400 hover:bg-green-400/60"
             }`}
             onClick={() => void sendChatMessage()}
