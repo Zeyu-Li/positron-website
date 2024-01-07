@@ -6,9 +6,7 @@
 /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 
 import Link from "next/link";
-import Button from "~/components/common/Button";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useState } from "react";
 import Spinner from "~/components/common/spinner/Spinner";
 import Title from "~/components/SEO/Title";
 import Header from "~/components/common/HeaderSessionAuto";
@@ -57,13 +55,12 @@ async function moderateContent(prompt: string) {
     console.error("Error while calling OpenAI Moderation API:", error);
   }
 }
-
 const rationale: rationaleValueStore = {
-  sexual: false,
   hate: (
     <span>
       This is hate speech, learn more at{" "}
       <a
+        target="_blank"
         className="text-secondaryBase"
         href="https://www.un.org/en/hate-speech/understanding-hate-speech/what-is-hate-speech#:~:text=In%20common%20language%2C%20%E2%80%9Chate%20speech,that%20may%20threaten%20social%20peace."
       >
@@ -71,29 +68,167 @@ const rationale: rationaleValueStore = {
       </a>
     </span>
   ),
-  harassment: false,
-  "self-harm": true,
-  "sexual/minors": false,
-  "hate/threatening": false,
-  "violence/graphic": false,
-  "self-harm/intent": true,
-  "self-harm/instructions": false,
-  "harassment/threatening": false,
-  violence: false,
   fine: <span>You will probably be fine with posting this message</span>,
+  harassment: (
+    <span>
+      You are inciting harassment with this post, learn more at{" "}
+      <a
+        target="_blank"
+        className="text-secondaryBase"
+        href="https://www.chrc-ccdp.gc.ca/en/about-human-rights/what-harassment"
+      >
+        Canada Human Rights Commission
+      </a>
+    </span>
+  ),
+  "self-harm": (
+    <span>
+      This content promotes self-harm, which is harmful. If you or someone you
+      know is struggling with self-harm, seek help from{" "}
+      <a
+        target="_blank"
+        className="text-secondaryBase"
+        href="https://www.mentalhealth.gov/get-help/immediate-help"
+      >
+        mental health professionals
+      </a>
+      .
+    </span>
+  ),
+  "sexual/minors": (
+    <span>
+      This content involves sexual content with minors, which is illegal and
+      harmful. Report such content to the appropriate authorities. Learn more
+      about online child exploitation{" "}
+      <a
+        target="_blank"
+        className="text-secondaryBase"
+        href="https://www.cybertip.ca/app/en/"
+      >
+        here
+      </a>
+      .
+    </span>
+  ),
+  "hate/threatening": (
+    <span>
+      This message contains hate speech with threatening language, violating
+      community guidelines. Avoid posting such content. Learn more about
+      combating online hate speech{" "}
+      <a
+        target="_blank"
+        className="text-secondaryBase"
+        href="https://www.adl.org/what-we-do/combat-hate/hate-speech"
+      >
+        here
+      </a>
+      .
+    </span>
+  ),
+  "violence/graphic": (
+    <span>
+      This post depicts graphic violence, which is against community standards.
+      Refrain from sharing violent content. Learn more about online safety and
+      reporting violent content{" "}
+      <a
+        target="_blank"
+        className="text-secondaryBase"
+        href="https://women-gender-equality.canada.ca/en/gender-based-violence/gender-based-violence-its-not-just/infographic-online-just-words.html"
+      >
+        here
+      </a>
+      .
+    </span>
+  ),
+  "self-harm/intent": (
+    <span>
+      This content indicates an intention to self-harm. Reach out to a mental
+      health professional or a trusted person for support. Learn more about
+      recognizing and helping someone with suicidal thoughts{" "}
+      <a
+        className="text-secondaryBase"
+        target="_blank"
+        href="https://www.iasp.info/resources/Helping_Someone/"
+      >
+        here
+      </a>
+      .
+    </span>
+  ),
+  "self-harm/instructions": (
+    <span>
+      This message provides instructions for self-harm, which is dangerous. Seek
+      immediate help from a mental health professional. Learn more about
+      preventing self-harm{" "}
+      <a
+        target="_blank"
+        className="text-secondaryBase"
+        href="https://suicidepreventionlifeline.org/how-we-can-all-prevent-suicide/"
+      >
+        here
+      </a>
+      .
+    </span>
+  ),
+  "harassment/threatening": (
+    <span>
+      This post involves harassment with threatening language. Refrain from
+      engaging in or promoting threatening behavior. Learn more about
+      recognizing and addressing online harassment{" "}
+      <a
+        target="_blank"
+        className="text-secondaryBase"
+        href="https://www.staysafeonline.org/stay-safe-online/identity-theft-cyberstalking-online-harassment/"
+      >
+        here
+      </a>
+      .
+    </span>
+  ),
+  violence: (
+    <span>
+      The content includes violent elements that violate community guidelines.
+      Avoid sharing content that promotes violence. Learn more about the impact
+      of violent content on individuals{" "}
+      <a
+        target="_blank"
+        className="text-secondaryBase"
+        href="https://women-gender-equality.canada.ca/en/gender-based-violence/gender-based-violence-its-not-just/infographic-online-just-words.html"
+      >
+        here
+      </a>
+      .
+    </span>
+  ),
+  sexual: (
+    <span>
+      This content involves explicit sexual material, which may violate
+      community standards. Use discretion when sharing sexual content. Learn
+      more about responsible online behavior{" "}
+      <a
+        target="_blank"
+        className="text-secondaryBase"
+        href="https://www.commonsensemedia.org/social-media/how-to-handle-inappropriate-posts-on-social-media"
+      >
+        here
+      </a>
+      .
+    </span>
+  ),
 };
 
 const shorthand: rationaleValueStore = {
   sexual: "You think you are a funny guy?",
   hate: "This is hate speech",
   harassment: "We detecting harassment",
-  "self-harm": true,
-  "sexual/minors": false,
-  "hate/threatening": false,
-  "violence/graphic": false,
-  "self-harm/intent": true,
-  "self-harm/instructions": false,
-  "harassment/threatening": false,
+  "self-harm": "This post contains self-harm content.",
+  "sexual/minors":
+    "This post contains inappropriate content related to minors.",
+  "hate/threatening": "This post contains threatening hate speech.",
+  "violence/graphic": "This post contains graphic violence.",
+  "self-harm/intent": "This post shows intent of self-harm.",
+  "self-harm/instructions": "This post contains instructions for self-harm.",
+  "harassment/threatening": "This post contains threatening harassment.",
   violence: "This contains violence or suggestions of violence",
   fine: "This is fine",
 };
@@ -216,9 +351,10 @@ export default function Check() {
                   </span>
                 );
               } else {
+                console.warn(shorthand, message.text, shorthand[message.text]);
                 return (
                   <span key={`other-${message.id}`}>
-                    <span className="border-textPrimary -lg:max-w-full float-left m-4 block max-w-[30%] break-words rounded-lg rounded-bl-none border-2 px-4 py-2 text-justify">
+                    <span className="border-textPrimary -lg:max-w-full float-left m-4 mr-[40%] block break-words rounded-lg rounded-bl-none border-2 px-4 py-2 text-justify">
                       <span className="inline-block">
                         {shorthand[message.text]}{" "}
                       </span>
