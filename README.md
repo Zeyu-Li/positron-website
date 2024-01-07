@@ -14,6 +14,9 @@ Check out our Devpost submission [here](https://devpost.com/software/positron-eb
 ![banner](screenshot3.png)
 ![banner](screenshot4.png)
 
+The extension:
+![extension demo](public/showcase.gif)
+
 ## Inspiration ✨
 
 In a world full of misinformation, hate speech, and harmful content, it overwhelms and negatively affects people. Research has shown that negative posts can effect your mental state. With our extension, we can hide hateful content **automagically ✨**! You can also check if your post will be flagged by our system by checking your post on the website before you post!

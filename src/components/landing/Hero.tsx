@@ -12,11 +12,11 @@ const Hero: React.FC = () => {
   return (
     <div className="-lg:px-8 w-full max-w-6xl flex-row">
       <div className="relative flex min-h-screen w-full items-center">
-        <div className="from-primaryBase to-primaryBase/30 via-primaryBase/50 absolute left-0 top-8 z-10 h-screen max-h-[90vh] w-full bg-gradient-to-t from-10% via-50% to-80%"></div>
+        <div className="from-primaryBase -lg:top-16 to-primaryBase/30 via-primaryBase/50 absolute left-0 top-8 z-10 h-screen max-h-[90vh] w-full bg-gradient-to-t from-10% via-50% to-80%"></div>
         <video
           autoPlay
           muted
-          className="z-1 absolute left-0 top-8 max-h-[90vh]"
+          className="z-1 -lg:top-16 absolute left-0 top-8 max-h-[90vh]"
           src={"cool.webm"}
         />
         <div
