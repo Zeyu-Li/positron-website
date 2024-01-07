@@ -1,6 +1,6 @@
 # Positron
 
-[![banner](screenshot.png)](https://positron-rouge.vercel.app/)
+[![banner](screenshot2.png)](https://positron-rouge.vercel.app/)
 
 Positron is a browser extension that removes all hate speech, misinformation, and harmful content from your feed!
 
@@ -10,7 +10,9 @@ Check out our Devpost submission [here](https://devpost.com/software/positron-eb
 
 ## Demo
 
-TODO: insert demo here
+![banner](screenshot2.png)
+![banner](screenshot3.png)
+![banner](screenshot4.png)
 
 ## Inspiration ✨
 
