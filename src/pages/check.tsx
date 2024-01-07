@@ -119,7 +119,7 @@ const rationale: rationaleValueStore = {
       <a
         target="_blank"
         className="text-secondaryBase"
-        href="https://www.adl.org/what-we-do/combat-hate/hate-speech"
+        href="https://www.adl.org/"
       >
         here
       </a>
@@ -134,7 +134,7 @@ const rationale: rationaleValueStore = {
       <a
         target="_blank"
         className="text-secondaryBase"
-        href="https://women-gender-equality.canada.ca/en/gender-based-violence/gender-based-violence-its-not-just/infographic-online-just-words.html"
+        href="https://en.wikipedia.org/wiki/Online_gender-based_violence"
       >
         here
       </a>
@@ -179,7 +179,7 @@ const rationale: rationaleValueStore = {
       <a
         target="_blank"
         className="text-secondaryBase"
-        href="https://www.staysafeonline.org/stay-safe-online/identity-theft-cyberstalking-online-harassment/"
+        href="https://www.bullyingcanada.ca/"
       >
         here
       </a>
@@ -194,7 +194,7 @@ const rationale: rationaleValueStore = {
       <a
         target="_blank"
         className="text-secondaryBase"
-        href="https://women-gender-equality.canada.ca/en/gender-based-violence/gender-based-violence-its-not-just/infographic-online-just-words.html"
+        href="https://www.end-violence.org/safe-online-2021-open-call"
       >
         here
       </a>
@@ -209,7 +209,7 @@ const rationale: rationaleValueStore = {
       <a
         target="_blank"
         className="text-secondaryBase"
-        href="https://www.commonsensemedia.org/social-media/how-to-handle-inappropriate-posts-on-social-media"
+        href="https://www.internetmatters.org/issues/inappropriate-content/learn-about-it/#:~:text=This%20could%20include%20content%20such,them%20open%20to%20this%20content."
       >
         here
       </a>
