@@ -9,11 +9,8 @@ Learn more on the [website](https://positron-rouge.vercel.app/) or download the 
 Check out our Devpost submission [here](https://devpost.com/software/positron-ebukjt)
 
 ## Demo
-
-![banner](screenshot2.png)
-![banner](screenshot3.png)
-![banner](screenshot4.png)
-
+Website showcase:
+![website showcase](website.gif)
 The extension:
 ![extension demo](public/showcase.gif)
 
