@@ -8,8 +8,8 @@ const Showcase: React.FC = () => {
         {/* screenshot img */}
         <div>
           <img
-            src="/landing/img/screenshotCropped.png"
-            alt="screenshot of app"
+            src="/showcase.gif"
+            alt="demo of app"
             className="image-mask border-textPrimary -lg:w-full m-auto mt-16 w-4/5 rounded-3xl rounded-b-none border-2"
           />
           <p className="pt-16 text-2xl">
