@@ -40,7 +40,7 @@ export default function About() {
           <h1 className="-lg:text-6xl pb-12 text-7xl font-bold">About</h1>
           <p className="-lg:text-lg pb-12 text-2xl">
             In a world full of misinformation, hate speech, and harmful content,
-            it overwhelms and negatively effects people. With our extension, we
+            it overwhelms and negatively affects people. With our extension, we
             can hide hateful content <b>automagically</b>! You can also check if
             your post will be flagged by our system by checking your post on
             this website by hitting the button below!{" "}
