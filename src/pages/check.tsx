@@ -1,8 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/consistent-indexed-object-style */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 
 import Link from "next/link";
@@ -10,6 +6,10 @@ import { useState } from "react";
 import Spinner from "~/components/common/spinner/Spinner";
 import Title from "~/components/SEO/Title";
 import Header from "~/components/common/HeaderSessionAuto";
+import {
+  MODERATION_MAX_INPUT_LENGTH,
+  type ModerationResult,
+} from "~/lib/moderation";
 import QuestionIcon from "~/components/common/QuestionIcon";
 import {
   Drawer,
@@ -31,30 +31,18 @@ interface messageType {
 interface rationaleValueStore {
   [key: string]: React.ReactNode | boolean;
 }
-async function moderateContent(prompt: string) {
-  const apiKey =
-    "c2stN0Y4b3FrZ2s3ckR0RzFvZkZsd1NUM0JsYmtGSjJ3SnBSU1BZeTV6NjRta0VmTUps";
-  const url = "https://api.openai.com/v1/moderations";
+async function moderateContent(input: string): Promise<ModerationResult> {
+  const response = await fetch("/api/moderate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ input }),
+  });
 
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${atob(apiKey)}`,
-      },
-      body: JSON.stringify({ input: prompt }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error while calling OpenAI Moderation API:", error);
+  if (!response.ok) {
+    throw new Error(`Error: ${response.status}`);
   }
+
+  return (await response.json()) as ModerationResult;
 }
 const rationale: rationaleValueStore = {
   hate: (
@@ -275,19 +263,8 @@ export default function Check() {
 
     // sent request here
     try {
-      const res = await moderateContent(currentMessage);
+      const { id, category } = await moderateContent(currentMessage);
 
-      console.log(res);
-      // what is the text result:
-      let text = "fine";
-      if (res.results[0].flagged) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        Object.entries(res.results[0].categories).forEach(([key, value]) => {
-          if (value) {
-            text = key;
-          }
-        });
-      }
       setChatMessages([
         ...messages,
         {
@@ -296,9 +273,9 @@ export default function Check() {
           text: currentMessage,
         },
         {
-          id: res.id,
+          id,
           sender: "bot",
-          text: text,
+          text: category,
         },
       ]);
       setIsTyping(false);
@@ -421,6 +398,7 @@ export default function Check() {
             type="text"
             className="h-16 w-full rounded-xl border-0 bg-primary px-4 text-2xl text-textPrimary outline-none placeholder:text-textPrimary/70 focus:outline-none"
             placeholder="Check your messages!"
+            maxLength={MODERATION_MAX_INPUT_LENGTH}
             onSubmit={() => void sendChatMessage()}
             onChange={(e) => setCurrentMessage(e.target.value)}
             value={currentMessage}
